@@ -54,4 +54,3 @@
 4.1 greš v cmd na mestu kjer je tvoj local repo in git commit -m "Vzpovstavil sem nekaj... #idNaYTrack DONE"
 4.2 git push //da tvoje commit-e zaj dejansko push-a na github repozitorij iz tvojega lokalnega
 4.3 git pull
-
