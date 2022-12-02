@@ -1,0 +1,57 @@
+1. Generate java code
+2. Mamo java kodo zaj
+3. Spring initializr
+3.1 Maven izberemo
+3.2 Java izberemo
+3.3 v3.0.0
+3.5 java 17
+3.6 dependecies
+3.6.1 Spring Web dodamo
+3.6.2 Spring Data JPA (je vmesnik med mysql in javo) dodamo
+3.6.3 MySQL Driver (za povezavo na Mysql) dodamo
+3.7 Generate
+
+3.8 V ...Main/resources napises not ono kaj je treba (port...)
+3.9 C:\Users\teo.lah\Documents\RIS\ris\ris\src\main\java\com\ActiveDay\ris dodaš tvoje razrede not
+
+3.10 Rabiš še model, dodaš podmapo pa tu not razrede tvoje
+3.11 Rabiš še kontroler, isto podmapa
+3.11.1 npr. HisaController datoteka
+3.11.2 nad razred se da @RestController in @RestMapping("/hise")
+3.11.3 znotraj razreda nad funkcijo @GetMapping("/hello") public String hello(){}
+3.11.4 Zazenes, da vidiš če dela in sprobaš v Postman-u
+3.11.4.1 Za tip metode GET gledaš, ker je gori bil @GetMapping
+3.11.4.2 localhost:8180/api/v1/hise/hello je pot in bi mogo dobit neki return, če je sprogramirano prav
+
+3.12 V modelu za hiso nad razredom daš @Entity
+3.12.1 Nujno rabi še Id: dodamo nad @Id @GeneratedValue(strategy = GenerationType.AUTO) private Long id;
+3.12.1.1 Nujno rabiš gettere pa settere za toti id
+3.12.2 Nad kolekcijo daš @OneToMany(mappedBy = "hisa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //to lahko pogledaš iz razrednega diagrama
+3.12.3 Glej errore in jih popravi
+3.12.4 To naredi še za druge razrede
+3.12.5 Neka spremenljivka navadna je lahko: @ManyToOne(fetch = FetchType.LAZY) @JOINColumn(name = "hisa.id") @ONDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
+3.12.5.1 @JsonIgnore pomeni, da se ne bo vrnila ta spremenljivka kot odgovor objekta
+3.12.5.2 FetchType.LAZY pomeni, da pridobi samo stvari, ki jih rabiš, ne pa čisto vsega
+
+3.13 Dodaš novo mapo (package) in not npr. public interface HisaRepository
+3.14 importaš stvari ki jih uporabljaš, toti razred extendaš: extends CrudRepository<Hisa, Long>
+3.15 @Query("select h from hisa h, Soba s where s.hisa=h and s.velikost>=?1") List<Hisa> vrniPoVelikosti(double velikost)  //ta ? je za tocno tisto velikost parameter
+
+3.15.0 Dodaš še atribut @AutoWired private HisaRepository hisaDao;
+3.15.1 V kontrolerju dodaš @GetMapping public Iteratable<Hisa> vrniHise() {return hisaDao.findAll();}
+3.15.2 Treba je v PB pogledat, da sta primarni ključ in tuji ključ istega tipa
+3.15.3 V kontrolerju dodaš @PostMapping public Hisa dodajHiso(@RequestBody Hisa hisa) {return hisaDao.save(hisa);}
+3.15.4 Zazeneš pa greš v Postman in moreš dat v body JSON format: {"hista_stevilka":46, "naslov":"abc","velikost": 150, "vrt":true}
+3.15.5 Pogledaš, da je res v bazo shranjeno in, da je kot odgovor nazaj poslalo shranjen objekt z id-jem tudi
+3.16.6 @GetMapping("/velikost/{velikost}") public Iterable<Hisa> vrniPoVelikostiSob(@PathVariable(name="velikost") double velikost);
+3.16 Podobno narediš za "sobe"
+3.16.1 Če iščeš po id-ju sobo daš @GetMapping("/sobe/{id}") public Optional<Soba> vrniSobe(@PathVariable(name="id") Long id) {return sobaDAO.findById(id);}
+3.16.2 Če dodajaš po id-ju hise daš @PostMapping("/hisa/{id}/soba") public Optional<Soba> dodajSobo(@RequestBody Soba soba, @PathVariable(name="id") Long id) {return hisaDAO.findById(id).map(hisa -> soba.setHisa(hisa)); }
+3.16.3 V PostManu: .../hisa/1/soba   {"velikost": 15, "ime":"Kopalnica"}
+
+4. git push, git pull, git status
+4.0 git add -A
+4.1 greš v cmd na mestu kjer je tvoj local repo in git commit -m "Vzpovstavil sem nekaj... #idNaYTrack DONE"
+4.2 git push //da tvoje commit-e zaj dejansko push-a na github repozitorij iz tvojega lokalnega
+4.3 git pull
+
