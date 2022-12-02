@@ -35,9 +35,8 @@
 
 3.13 Dodaš novo mapo (package) in not npr. public interface HisaRepository
 3.14 importaš stvari ki jih uporabljaš, toti razred extendaš: extends CrudRepository<Hisa, Long>
-3.15 @Query("select h from hisa h, Soba s where s.hisa=h and s.velikost>=?1") List<Hisa> vrniPoVelikosti(double velikost)  //ta ? je za tocno tisto velikost parameter
-
-3.15.0 Dodaš še atribut @AutoWired private HisaRepository hisaDao;
+3.15 @Query("select * from hisa h, Soba s where s.hisa=h and s.velikost>=?1") List<Hisa> vrniPoVelikosti(double velikost)  //ta ?1 je za tocno prvi parameter
+3.15.0 Dodaš še atribut @Autowired private HisaRepository hisaDao;
 3.15.1 V kontrolerju dodaš @GetMapping public Iteratable<Hisa> vrniHise() {return hisaDao.findAll();}
 3.15.2 Treba je v PB pogledat, da sta primarni ključ in tuji ključ istega tipa
 3.15.3 V kontrolerju dodaš @PostMapping public Hisa dodajHiso(@RequestBody Hisa hisa) {return hisaDao.save(hisa);}
@@ -54,4 +53,3 @@
 4.1 greš v cmd na mestu kjer je tvoj local repo in git commit -m "Vzpovstavil sem nekaj... #idNaYTrack DONE"
 4.2 git push //da tvoje commit-e zaj dejansko push-a na github repozitorij iz tvojega lokalnega
 4.3 git pull
-
