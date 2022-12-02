@@ -1,15 +1,10 @@
 package com.ActiveDay.ris.Kontroler;
 
-import com.ActiveDay.ris.Model.Vaja;
-import com.ActiveDay.ris.Repozitorij.VajaRepozitorij;
+import com.ActiveDay.ris.Model.*;
+import com.ActiveDay.ris.Repozitorij.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.security.InvalidKeyException;
 import java.util.Optional;
-
-import static org.springframework.http.HttpStatus.NOT_MODIFIED;
 
 @RestController
 @RequestMapping("/vaja")
@@ -56,8 +51,13 @@ public class VajaKontroler {
     }
 
     @GetMapping("/naziv/{naziv}/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
-    public Iterable<Vaja> vrniVajeTezavnosti(@PathVariable(name = "naziv") String naziv, @PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
+    public Iterable<Vaja> vrniDoloceneVajeTezavnosti(@PathVariable(name = "naziv") String naziv, @PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
         return vajaDao.vrniDoloceneVajeTezavnosti(naziv, stPonovitev, maxTrajanje);
+    }
+
+    @GetMapping("/naziv/{naziv}/opisbrez/{niz}/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
+    public Iterable<Vaja> vrniDoloceneVajeTezavnostiBrez(@PathVariable(name="naziv") String naziv, @PathVariable(name="niz") String nizBrez, @PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
+        return vajaDao.vrniDoloceneVajeTezavnostiBrez(naziv, nizBrez, stPonovitev, maxTrajanje);
     }
 
 

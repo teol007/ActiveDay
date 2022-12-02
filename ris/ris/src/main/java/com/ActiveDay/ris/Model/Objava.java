@@ -3,6 +3,9 @@ package com.ActiveDay.ris.Model;
 public abstract class Objava {
 	private long casObjave;
 	private boolean javno = false;
+
+	//to se naredi al?
+	//@ManyToOne(fetch = FetchType.LAZY) @JOINColumn(name = "uporabnik.id") @ONDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
 	private Uporabnik avtor;
 
 	public Objava() {
