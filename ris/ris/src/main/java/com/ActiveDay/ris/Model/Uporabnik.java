@@ -18,6 +18,7 @@ public class Uporabnik {
 	private String email;
 	private String geslo;
 	private Arhiv arhiv;
+	
 	private ArrayList<Objava> objave = new ArrayList<Objava>();
 
 	public void ustvariObjavo(Objava objava) {

@@ -1,6 +1,15 @@
 package com.ActiveDay.ris.Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public abstract class Objava {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private long casObjave;
 	private boolean javno = false;
 
@@ -31,4 +40,8 @@ public abstract class Objava {
 	public boolean isJavno() {
 		return this.javno;
 	}
+
+	public void setId(Long id) { this.id = id; }
+
+    public Long getId() { return id; }
 }
