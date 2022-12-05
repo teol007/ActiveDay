@@ -16,7 +16,7 @@ public class Vaja {
 	private long casTrajanja;
 	private boolean stanje = false;
 
-	public Vaja() {} //More bit,da se bo lahko objekt sploh shrano iz JSON-a (pa neke za serializacijo je se bil error)
+	public Vaja() {} //More bit da se bo lahko objekt sploh shrano iz JSON-a (pa neke za serializacijo je se bil error)
 
 	public Vaja(String naziv) {
 		throw new UnsupportedOperationException();
