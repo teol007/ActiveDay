@@ -2,7 +2,16 @@ package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Uporabnik {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String ime;
 	private String priimek;
 	private String uporabniskoIme;
@@ -70,4 +79,8 @@ public class Uporabnik {
 	public String getGeslo() {
 		return this.geslo;
 	}
+	
+    public void setId(Long id) { this.id = id; }
+
+    public Long getId() { return id; }
 }
