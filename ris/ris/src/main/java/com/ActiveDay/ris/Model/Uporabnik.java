@@ -2,10 +2,10 @@ package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.hibernate.annotations.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class Uporabnik {
@@ -17,8 +17,10 @@ public class Uporabnik {
 	private String uporabniskoIme;
 	private String email;
 	private String geslo;
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "arhiv.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
 	private Arhiv arhiv;
-	
+	//mappedBy = "objava" ne deluje
+	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ArrayList<Objava> objave = new ArrayList<Objava>();
 
 	public void ustvariObjavo(Objava objava) {

@@ -29,7 +29,7 @@
 3.12.2 Nad kolekcijo daš @OneToMany(mappedBy = "hisa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)  //to lahko pogledaš iz razrednega diagrama
 3.12.3 Glej errore in jih popravi
 3.12.4 To naredi še za druge razrede
-3.12.5 Neka spremenljivka navadna je lahko: @ManyToOne(fetch = FetchType.LAZY) @JOINColumn(name = "hisa.id") @ONDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
+3.12.5 Neka spremenljivka navadna je lahko: @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "hisa.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
 3.12.5.1 @JsonIgnore pomeni, da se ne bo vrnila ta spremenljivka kot odgovor objekta
 3.12.5.2 FetchType.LAZY pomeni, da pridobi samo stvari, ki jih rabiš, ne pa čisto vsega
 

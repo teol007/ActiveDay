@@ -1,8 +1,15 @@
 package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
+import jakarta.persistence.*;
 
+@Entity
 public class Arhiv {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	//mappedBy = "vadba" ne deluje
+	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ArrayList<Vadba> vadbe = new ArrayList<Vadba>();
 
 	public void dodajVadbo(Vadba vadba) {
@@ -22,8 +29,12 @@ public class Arhiv {
 	}
 
 	public Arhiv() {
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException(); //to more bit zakomentirano, ker springboot ne zna inicializirat drugac
 	}
+
+	public Long getId() { return id; }
+
+	public void setId(Long id) { this.id = id; }
 
 	public void addVadbe(Vadba vadbe) {
 		this.vadbe.add(vadbe);

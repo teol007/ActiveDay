@@ -1,9 +1,8 @@
 package com.ActiveDay.ris.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.hibernate.annotations.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 @Entity
 public abstract class Objava {
@@ -13,8 +12,7 @@ public abstract class Objava {
 	private long casObjave;
 	private boolean javno = false;
 
-	//to se naredi al?
-	//@ManyToOne(fetch = FetchType.LAZY) @JOINColumn(name = "uporabnik.id") @ONDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "uporabnik.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
 	private Uporabnik avtor;
 
 	public Objava() {

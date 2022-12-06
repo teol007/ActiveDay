@@ -1,12 +1,22 @@
 package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
+import jakarta.persistence.*;
 
-public class Vadba extends Objava {
+@Entity
+public class Vadba extends Objava 
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String naziv;
 	private int stIntervalov = 1;
 	private boolean stanje = false;
+	//mappedBy = "vaja" ne deluje
+	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ArrayList<Vaja> vaje = new ArrayList<Vaja>();
+	//mappedBy = "objava" ne deluje
+	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ArrayList<Objava> objave = new ArrayList<Objava>();
 
 	public void dodajVajo(Vaja vaja) {
@@ -31,6 +41,14 @@ public class Vadba extends Objava {
 
 	public Vadba(String naziv, int stIntervalov, boolean stanje) {
 		throw new UnsupportedOperationException();
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
+		return this.id;
 	}
 
 	public void setNaziv(String naziv) {
