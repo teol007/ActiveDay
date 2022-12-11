@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface KomentarRepozitorij extends CrudRepository<Vadba, Long> {
+public interface KomentarRepozitorij extends CrudRepository<Komentar, Long> {
     
 }

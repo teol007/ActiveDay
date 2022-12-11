@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ArhivRepozitorij extends CrudRepository<Vadba, Long> {
+public interface ArhivRepozitorij extends CrudRepository<Arhiv, Long> {
     
 }
