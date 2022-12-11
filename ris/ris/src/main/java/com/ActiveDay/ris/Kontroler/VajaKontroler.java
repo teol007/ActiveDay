@@ -45,17 +45,17 @@ public class VajaKontroler {
         return true;
     }
 
-    @GetMapping("/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
+    @GetMapping("/ponovitve/{stPonovitev}/maxTrajanje/{maxTrajanje}")
     public Iterable<Vaja> vrniVajeTezavnosti(@PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
         return vajaDao.vrniVajeTezavnosti(stPonovitev, maxTrajanje);
     }
 
-    @GetMapping("/naziv/{naziv}/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
+    @GetMapping("/naziv/{naziv}/ponovitve/{stPonovitev}/maxTrajanje/{maxTrajanje}")
     public Iterable<Vaja> vrniDoloceneVajeTezavnosti(@PathVariable(name = "naziv") String naziv, @PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
         return vajaDao.vrniDoloceneVajeTezavnosti(naziv, stPonovitev, maxTrajanje);
     }
 
-    @GetMapping("/naziv/{naziv}/opisbrez/{niz}/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
+    @GetMapping("/naziv/{naziv}/opisbrez/{niz}/ponovitve/{stPonovitev}/maxTrajanje/{maxTrajanje}")
     public Iterable<Vaja> vrniDoloceneVajeTezavnostiBrez(@PathVariable(name="naziv") String naziv, @PathVariable(name="niz") String nizBrez, @PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
         return vajaDao.vrniDoloceneVajeTezavnostiBrez(naziv, nizBrez, stPonovitev, maxTrajanje);
     }
