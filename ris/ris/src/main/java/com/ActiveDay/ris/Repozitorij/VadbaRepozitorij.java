@@ -9,14 +9,17 @@ import java.util.List;
 
 @Repository
 public interface VadbaRepozitorij extends CrudRepository<Vadba, Long> {
-    /* 
-    @Query(value="SELECT * FROM vadba v WHERE v.st_ponovitev<=?1 AND v.cas_trajanja<=?2", nativeQuery=true)
-    List<Vadba> vrniVajeTezavnosti(int stPonovitev, long casTrajanja); //ta ?1 je za tocno prvi parameter
 
-    @Query(value="SELECT * FROM vadba v WHERE v.naziv LIKE %?1% AND v.st_ponovitev<=?2 AND v.cas_trajanja<=?3", nativeQuery=true)
-    List<Vadba> vrniDoloceneVajeTezavnosti(String priblizenNaziv, int stPonovitev, long casTrajanja);
+    //testni SQL stavek - vrne samo vadbo in stevilo vaj, ki jih ima: SELECT vad.*, COUNT(vaj.id) AS stVaj FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING stVaj>=?1 ;
+    //testni SQL stavek - vrne vadbe z njihovimi vajami: SELECT vad.*, vaj.* FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id WHERE vad.id IN(SELECT id FROM (SELECT vad.*, COUNT(vaj.id) AS stVaj FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING stVaj>=?1 ) t1);
+    //testni SQL stavek - vrne samo id vadb: SELECT vad.id FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING COUNT(vaj.id)>=?1 ;
+    @Query(value="SELECT vad.id FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING COUNT(vaj.id)>=?1 ;", nativeQuery=true)
+    List<Long> vrniVadbeZVecVajamiOd(int stVaj);
 
-    @Query(value="SELECT * FROM vadba v WHERE v.naziv LIKE %?1% AND v.opis NOT LIKE %?2% AND v.st_ponovitev<=?3 AND v.cas_trajanja<=?4", nativeQuery=true)
-    List<Vadba> vrniDoloceneVajeTezavnostiBrez(String priblizenNaziv, String opisBrez, int stPonovitev, long casTrajanja);
-    */
+    //testni SQL stavek - vrne samo vadbo in stevilo vaj, ki jih ima: SELECT vad.*, COUNT(vaj.id) AS stVaj FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING stVaj<=?1 ;
+    //testni SQL stavek - vrne vadbe z njihovimi vajami: SELECT vad.*, vaj.* FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id WHERE vad.id IN(SELECT id FROM (SELECT vad.*, COUNT(vaj.id) AS stVaj FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING stVaj<=?1 ) t1);
+    //testni SQL stavek - vrne samo id vadb: SELECT vad.id FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING COUNT(vaj.id)>=?1 ;
+    @Query(value="SELECT vad.id FROM vadba vad INNER JOIN vadba_vaje vv ON vv.vadba_id = vad.id INNER JOIN vaja vaj ON vv.vaje_id = vaj.id GROUP BY vad.id HAVING COUNT(vaj.id)<=?1 ;", nativeQuery=true)
+    List<Long> vrniVadbeZManjVajamiOd(int maxStVaj);
+
 }

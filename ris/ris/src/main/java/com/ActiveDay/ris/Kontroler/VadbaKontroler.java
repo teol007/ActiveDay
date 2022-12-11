@@ -52,21 +52,15 @@ public class VadbaKontroler {
         vadbaDao.deleteById(id);
         return true;
     }
-/* 
-    @GetMapping("/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
-    public Iterable<Vadba> vrniVadbeTezavnosti(@PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
-        return vadbaDao.vrniVadbeTezavnosti(stPonovitev, maxTrajanje);
+
+    @GetMapping("vajVsaj/{stVaj}")
+    public Iterable<Vadba> vrniVadbeZVecVajamiOd(@PathVariable(name="stVaj") int stVaj) {
+        return vadbaDao.findAllById(vadbaDao.vrniVadbeZVecVajamiOd(stVaj));
     }
 
-    @GetMapping("/naziv/{naziv}/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
-    public Iterable<Vadba> vrniDoloceneVadbeTezavnosti(@PathVariable(name = "naziv") String naziv, @PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
-        return vadbaDao.vrniDoloceneVadbeTezavnosti(naziv, stPonovitev, maxTrajanje);
+    @GetMapping("vajNajvec/{stVaj}")
+    public Iterable<Vadba> vrniVadbeZManjVajamiOd(@PathVariable(name="stVaj") int stVaj) {
+        return vadbaDao.findAllById(vadbaDao.vrniVadbeZManjVajamiOd(stVaj));
     }
-
-    @GetMapping("/naziv/{naziv}/opisbrez/{niz}/ponovitve/{stPonovitev}/velikost/{maxTrajanje}")
-    public Iterable<Vadba> vrniDoloceneVadbeTezavnostiBrez(@PathVariable(name="naziv") String naziv, @PathVariable(name="niz") String nizBrez, @PathVariable(name = "stPonovitev") int stPonovitev, @PathVariable(name = "maxTrajanje") long maxTrajanje) {
-        return vadbaDao.vrniDoloceneVadbeTezavnostiBrez(naziv, nizBrez, stPonovitev, maxTrajanje);
-    }
- */
 
 }
