@@ -66,7 +66,7 @@ public class UporabnikKontroler {
 
     //------------REGISTRACIJA--------------------
 
-    /* @PostMapping("/registracija")
+    @PostMapping("/registracija")
     public boolean registracijaUporabnika(@RequestBody Uporabnik uporabnik){
         List<Uporabnik> tempUporabnik = uporabnikDao.preveriCeEmailObstaja(uporabnik.getEmail());
         if(tempUporabnik.size() > 0){
@@ -75,10 +75,10 @@ public class UporabnikKontroler {
         uporabnikDao.save(uporabnik);
         System.out.println("Registracija je bila uspesna!");
         return true;
-    } */
+    }
 
     //----------------PRIJAVA-------------
-    /* @PostMapping("/prijava/{email}/{geslo}")
+     @PostMapping("/prijava/{email}/{geslo}")
     public boolean vrniUporabnikaLogin(@PathVariable(name="geslo") String email, @PathVariable(name="geslo") String geslo) {
         //more vrnit uporabnika al true/false?        
         List<Uporabnik> tempUporabnik = uporabnikDao.vrniUporabnikaLogin(email, geslo);
@@ -87,6 +87,6 @@ public class UporabnikKontroler {
             return true;
         }
         return false;
-    } */
+    }
     
 }
