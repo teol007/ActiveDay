@@ -63,4 +63,11 @@ public class VadbaKontroler {
         return vadbaDao.findAllById(vadbaDao.vrniVadbeZManjVajamiOd(stVaj));
     }
 
+    /* @PostMapping("/{id}/dodajVajo")
+    public Vadba dodajVajoVadbi(@PathVariable(name="id") Long id, @RequestBody Vaja vaja) {
+        vadbaDao.findById(id).get().dodajVajo(vaja);
+        return vadbaDao.findById(id).get();
+        //return vadbaDao.save(vadba);
+    } */
+
 }

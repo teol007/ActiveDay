@@ -1,6 +1,8 @@
 package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,10 +14,10 @@ public class Vadba extends Objava
 	private boolean stanje = false;
 	//mappedBy = "vaja" ne deluje
 	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Vaja> vaje = new ArrayList<Vaja>();
+	private List<Vaja> vaje = new ArrayList<Vaja>();
 	//mappedBy = "objava" ne deluje
-	/* @OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Objava> objave = new ArrayList<Objava>(); */
+	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Objava> objave = new ArrayList<Objava>();
 
 	public Vadba() {} //More bit da se bo lahko objekt sploh shrano iz JSON-a
 
@@ -59,7 +61,7 @@ public class Vadba extends Objava
 		return this.stanje;
 	}
 
-	public ArrayList<Vaja> getVaje() {
+	public List<Vaja> getVaje() {
 		return vaje;
 	}
 
@@ -67,8 +69,16 @@ public class Vadba extends Objava
 		this.vaje = vaje;
 	}
 
+	public List<Objava> getObjave() {
+		return objave;
+	}
+
+	public void setObjave(ArrayList<Objava> objave) {
+		this.objave = objave;
+	}
+
 	public void dodajVajo(Vaja vaja) {
-		throw new UnsupportedOperationException();
+		vaje.add(vaja);
 	}
 
 	public void odstraniVajo(Vaja vaja) {
