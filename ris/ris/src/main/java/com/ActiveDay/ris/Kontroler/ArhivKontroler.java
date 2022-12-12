@@ -52,14 +52,14 @@ public class ArhivKontroler {
     }
 
     //vrne arhive ki majo vadbe ki majo v nazivu "kondicijsko"
-    /* @GetMapping("kondicijskeVadbe/{naziv}")
+    @GetMapping("kondicijskeVadbe/{naziv}")
     public Iterable<Arhiv> vrniArhivZKondicijskimiVadbami(@PathVariable(name="naziv") String naziv) {
         return arhivDao.vrniArhivZKondicijskimiVadbami(naziv);
-    } */
+    }
 
     //vrne arhive ki majo vadbe ki majo vec st intervalov kot 1
-    /* @GetMapping("vadbe/vecIntervalov")
+    @GetMapping("vadbe/vecIntervalov")
     public Iterable<Arhiv> vrniArhivGledeNaIntervaleVadb(@PathVariable(name="stIntervalov") int stIntervalov) {
         return arhivDao.vrniArhivGledeNaIntervaleVadb(stIntervalov);
-    } */
+    }
 }
