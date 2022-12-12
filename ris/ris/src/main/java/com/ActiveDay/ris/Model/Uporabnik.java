@@ -22,6 +22,8 @@ public class Uporabnik {
 	//mappedBy = "objava" ne deluje
 	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ArrayList<Objava> objave = new ArrayList<Objava>();
+	
+	public Uporabnik(){}
 
 	public void ustvariObjavo(Objava objava) {
 		throw new UnsupportedOperationException();

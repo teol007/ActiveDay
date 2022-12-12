@@ -2,6 +2,10 @@ package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
 import jakarta.persistence.*;
+import org.hibernate.annotations.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class Arhiv {
