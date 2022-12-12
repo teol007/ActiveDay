@@ -1,8 +1,10 @@
 package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.hibernate.annotations.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.CascadeType;
@@ -20,8 +22,17 @@ public class Uporabnik {
 	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "arhiv.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
 	private Arhiv arhiv;
 	//mappedBy = "objava" ne deluje
-	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Objava> objave = new ArrayList<Objava>();
+	//@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//private ArrayList<Objava> objave = new ArrayList<Objava>();
+	private boolean enabled; //More bit za pravice pa to
+	@ManyToMany 
+    @JoinTable( 
+        name = "uporabniki_roles", 
+        joinColumns = @JoinColumn(
+          name = "uporabnik_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    private Collection<Role> roles; //vloga uporabnika
 
 	public void ustvariObjavo(Objava objava) {
 		throw new UnsupportedOperationException();
@@ -32,11 +43,15 @@ public class Uporabnik {
 	}
 
 	public Uporabnik(String email) {
-		throw new UnsupportedOperationException();
+		this.email = email;
 	}
 
 	public Uporabnik(String ime, String priimek, String uporabniskoIme, String email, String geslo) {
-		throw new UnsupportedOperationException();
+		this(email);
+		this.ime = ime;
+		this.priimek = priimek;
+		this.uporabniskoIme = uporabniskoIme;
+		this.geslo = geslo;
 	}
 
 	public void setArhiv(Arhiv arhiv) {
@@ -86,4 +101,29 @@ public class Uporabnik {
     public void setId(Long id) { this.id = id; }
 
     public Long getId() { return id; }
+
+	/* public void setObjave(ArrayList<Objava> objave) {
+		this.objave = objave;
+	}
+
+	public ArrayList<Objava> getObjave() {
+		return objave;
+	} */
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
 }
