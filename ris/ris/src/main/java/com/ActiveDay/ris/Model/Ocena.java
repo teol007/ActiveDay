@@ -9,6 +9,8 @@ public class Ocena extends Objava {
 	private Long id;
 	private int ocena;
 
+	public Ocena(){}
+
 	public Ocena(int ocena) {
 		throw new UnsupportedOperationException();
 	}

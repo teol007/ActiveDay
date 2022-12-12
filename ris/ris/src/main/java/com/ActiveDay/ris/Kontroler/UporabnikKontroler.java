@@ -4,6 +4,10 @@ import com.ActiveDay.ris.Model.*;
 import com.ActiveDay.ris.Repozitorij.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -58,6 +62,31 @@ public class UporabnikKontroler {
     @GetMapping("/geslo/{geslo}/uporabniskoIme/{uporabniskoIme}/priimek/{priimek}")
     public Iterable<Uporabnik> vrniUporabnikeNovake(@PathVariable(name="geslo") String geslo, @PathVariable(name="uporabniskoIme") String uporabniskoIme, @PathVariable(name = "priimek") String priimek) {
         return uporabnikDao.vrniUporabnikeNovake(geslo, uporabniskoIme, priimek);
+    }
+
+    //------------REGISTRACIJA--------------------
+
+    @PostMapping("/registracija")
+    public boolean registracijaUporabnika(@RequestBody Uporabnik uporabnik){
+        List<Uporabnik> tempUporabnik = uporabnikDao.preveriCeEmailObstaja(uporabnik.getEmail());
+        if(tempUporabnik.size() > 0){
+            return false;
+        }
+        uporabnikDao.save(uporabnik);
+        System.out.println("Registracija je bila uspesna!");
+        return true;
+    }
+
+    //----------------PRIJAVA-------------
+     @PostMapping("/prijava/{email}/{geslo}")
+    public boolean vrniUporabnikaLogin(@PathVariable(name="geslo") String email, @PathVariable(name="geslo") String geslo) {
+        //more vrnit uporabnika al true/false?        
+        List<Uporabnik> tempUporabnik = uporabnikDao.vrniUporabnikaLogin(email, geslo);
+        if(tempUporabnik.size() > 0){
+            System.out.println("Prijava je bila uspesna!");
+            return true;
+        }
+        return false;
     }
     
 }

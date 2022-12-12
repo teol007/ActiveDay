@@ -10,6 +10,8 @@ public class Komentar extends Objava {
 	private String naslov;
 	private String vsebina;
 
+	public Komentar(){}
+
 	public Komentar(String vsebina) {
 		throw new UnsupportedOperationException();
 	}

@@ -33,6 +33,8 @@ public class Uporabnik {
         inverseJoinColumns = @JoinColumn(
           name = "role_id", referencedColumnName = "id")) 
     private Collection<Role> roles; //vloga uporabnika
+	
+	public Uporabnik(){}
 
 	public void ustvariObjavo(Objava objava) {
 		throw new UnsupportedOperationException();
