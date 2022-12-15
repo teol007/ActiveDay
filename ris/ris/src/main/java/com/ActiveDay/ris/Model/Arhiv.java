@@ -1,6 +1,8 @@
 package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,7 +16,7 @@ public class Arhiv {
 	private Long id;
 	//mappedBy = "vadba" ne deluje
 	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Vadba> vadbe = new ArrayList<Vadba>();
+	private List<Vadba> vadbe = new ArrayList<Vadba>();
 
 	public void dodajVadbo(Vadba vadba) {
 		throw new UnsupportedOperationException();
@@ -39,6 +41,14 @@ public class Arhiv {
 	public Long getId() { return id; }
 
 	public void setId(Long id) { this.id = id; }
+
+	public List<Vadba> getVadbe() {
+		return vadbe;
+	}
+
+	public void setVadbe(List<Vadba> vadbe) {
+		this.vadbe = vadbe;
+	}
 
 	public void addVadbe(Vadba vadbe) {
 		this.vadbe.add(vadbe);
