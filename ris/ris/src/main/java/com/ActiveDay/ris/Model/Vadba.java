@@ -16,8 +16,10 @@ public class Vadba extends Objava
 	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Vaja> vaje = new ArrayList<Vaja>();
 	//mappedBy = "objava" ne deluje
-	/* @OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Objava> objave = new ArrayList<Objava>(); */
+	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Ocena> ocene = new ArrayList<Ocena>();
+	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Komentar> komentarji = new ArrayList<Komentar>();
 
 	public Vadba() {} //More bit da se bo lahko objekt sploh shrano iz JSON-a
 
@@ -69,8 +71,24 @@ public class Vadba extends Objava
 		this.vaje = vaje;
 	}
 
+	public void setOcene(List<Ocena> ocene) {
+		this.ocene = ocene;
+	}
+
+	public List<Ocena> getOcene() {
+		return ocene;
+	}
+
+	public void setKomentarji(List<Komentar> komentarji) {
+		this.komentarji = komentarji;
+	}
+
+	public List<Komentar> getKomentarji() {
+		return komentarji;
+	}
+
 	public void dodajVajo(Vaja vaja) {
-		throw new UnsupportedOperationException();
+		vaje.add(vaja);
 	}
 
 	public void odstraniVajo(Vaja vaja) {

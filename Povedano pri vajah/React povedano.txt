@@ -1,0 +1,4 @@
+Tukaj ni "strani" ampak komponente (komponents)
+
+...
+V mapi components naredimo novo mapo in znotraj te Routing.js

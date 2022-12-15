@@ -63,4 +63,19 @@ public class VadbaKontroler {
         return vadbaDao.findAllById(vadbaDao.vrniVadbeZManjVajamiOd(stVaj));
     }
 
+    @GetMapping("vajVsaj/{minStVaj}/ocenVsaj/{minStOcen}")
+    public Iterable<Vadba> vrniVadbeZVecVajamiOdZVecOcenOd(@PathVariable(name="minStVaj") int minStVaj, @PathVariable(name="minStOcen") int minStOcen) {
+        return vadbaDao.findAllById(vadbaDao.vrniVadbeZVecVajamiOdZVecOcenOd(minStVaj, minStOcen));
+    }
+
+    @GetMapping("vajNajvec/{maxStVaj}/ocenNajvec/{maxStOcen}")
+    public Iterable<Vadba> vrniVadbeZManjVajamiOdZManjOcenOd(@PathVariable(name="maxStVaj") int maxStVaj, @PathVariable(name="maxStOcen") int maxStOcen) {
+        return vadbaDao.findAllById(vadbaDao.vrniVadbeZManjVajamiOdZManjOcenOd(maxStVaj, maxStOcen));
+    }
+
+    @GetMapping("vajVsaj/{minStVaj}/povprecjeOcenVsaj/{minPovpOcen}")
+    public Iterable<Vadba> vrniVadbeZVecVajamiOdInPovprecjeOcenOd(@PathVariable(name="minStVaj") int minStVaj, @PathVariable(name="minPovpOcen") int minPovpOcen) {
+        return vadbaDao.findAllById(vadbaDao.vrniVadbeZVecVajamiOdInPovprecjeOcenOd(minStVaj, minPovpOcen));
+    }
+
 }

@@ -34,14 +34,6 @@ public class Arhiv {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setVadbe(List<Vadba> vadbe){
-		this.vadbe = vadbe;
-	}
-
-	public List<Vadba> getVadbe(){
-		return vadbe;
-	}
-
 	public Arhiv() {
 		// throw new UnsupportedOperationException(); //to more bit zakomentirano, ker springboot ne zna inicializirat drugac
 	}
@@ -49,6 +41,14 @@ public class Arhiv {
 	public Long getId() { return id; }
 
 	public void setId(Long id) { this.id = id; }
+
+	public List<Vadba> getVadbe() {
+		return vadbe;
+	}
+
+	public void setVadbe(List<Vadba> vadbe) {
+		this.vadbe = vadbe;
+	}
 
 	public void addVadbe(Vadba vadbe) {
 		this.vadbe.add(vadbe);
