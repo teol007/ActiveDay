@@ -67,7 +67,7 @@ public class Vadba extends Objava
 		return vaje;
 	}
 
-	public void setVaje(ArrayList<Vaja> vaje) {
+	public void setVaje(List<Vaja> vaje) {
 		this.vaje = vaje;
 	}
 
