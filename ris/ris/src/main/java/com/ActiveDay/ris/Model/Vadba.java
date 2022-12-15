@@ -1,6 +1,8 @@
 package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +14,7 @@ public class Vadba extends Objava
 	private boolean stanje = false;
 	//mappedBy = "vaja" ne deluje
 	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Vaja> vaje = new ArrayList<Vaja>();
+	private List<Vaja> vaje = new ArrayList<Vaja>();
 	//mappedBy = "objava" ne deluje
 	/* @OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ArrayList<Objava> objave = new ArrayList<Objava>(); */
@@ -59,11 +61,11 @@ public class Vadba extends Objava
 		return this.stanje;
 	}
 
-	public ArrayList<Vaja> getVaje() {
+	public List<Vaja> getVaje() {
 		return vaje;
 	}
 
-	public void setVaje(ArrayList<Vaja> vaje) {
+	public void setVaje(List<Vaja> vaje) {
 		this.vaje = vaje;
 	}
 

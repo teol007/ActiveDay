@@ -1,6 +1,7 @@
 package com.ActiveDay.ris.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.annotations.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,7 +22,7 @@ public class Uporabnik {
 	private Arhiv arhiv;
 	//mappedBy = "objava" ne deluje
 	@OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private ArrayList<Objava> objave = new ArrayList<Objava>();
+	private List<Objava> objave = new ArrayList<Objava>();
 	
 	public Uporabnik(){}
 
