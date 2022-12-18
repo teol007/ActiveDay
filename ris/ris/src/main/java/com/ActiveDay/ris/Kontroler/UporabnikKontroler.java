@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class UporabnikKontroler {
     @Autowired
     private UporabnikRepozitorij uporabnikDao;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("")
     public Iterable<Uporabnik> vrniVseUporabnike() {
@@ -29,7 +32,15 @@ public class UporabnikKontroler {
 
     @PostMapping("")
     public Uporabnik dodajUporabnika(@RequestBody Uporabnik uporabnik)
-    {return uporabnikDao.save(uporabnik);}
+    {
+        if(uporabnik.getRoles() == null)
+        {
+            Role userRole = roleRepository.findByName("ROLE_USER");
+            uporabnik.setRoles(Arrays.asList(userRole));
+            uporabnik.setEnabled(true);
+        }
+        return uporabnikDao.save(uporabnik);
+    }
 
     @PutMapping("{id}")
     public Uporabnik spremeniUporabnika(@PathVariable(name="id") Long id, @RequestBody Uporabnik uporabnik) {
@@ -37,6 +48,12 @@ public class UporabnikKontroler {
         if(!uporabnikDao.existsById(id))
             return null;
 
+        if(uporabnik.getRoles().isEmpty())
+        {
+            Role userRole = roleRepository.findByName("ROLE_USER");
+            uporabnik.setRoles(Arrays.asList(userRole));
+            uporabnik.setEnabled(true);
+        }
         uporabnik.setId(id);
         return uporabnikDao.save(uporabnik);
     }

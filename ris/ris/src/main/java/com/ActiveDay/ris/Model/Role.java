@@ -2,6 +2,8 @@ package com.ActiveDay.ris.Model;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 //Vir: https://www.baeldung.com/role-and-privilege-for-spring-security-registration (11.12.2022
@@ -13,6 +15,8 @@ public class Role {
     private Long id;
 
     private String naziv;
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Collection<Uporabnik> uporabniki;
 
@@ -24,6 +28,9 @@ public class Role {
         inverseJoinColumns = @JoinColumn(
           name = "privilege_id", referencedColumnName = "id"))
     private Collection<Privilege> privileges;
+
+    public Role()
+    {}
 
     public Role(String naziv)
     {
