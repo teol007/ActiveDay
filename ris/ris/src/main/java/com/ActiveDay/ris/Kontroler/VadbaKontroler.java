@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/vadba")
+@CrossOrigin
 public class VadbaKontroler {
     @Autowired
     private VadbaRepozitorij vadbaDao;
@@ -32,6 +34,13 @@ public class VadbaKontroler {
         //! System.out.println(vadba);
         //vajaDao.saveAll(vadba.getVaje());
         return vadbaDao.save(vadba);
+    }
+
+    @PostMapping("{id}/vaja")
+    public Vadba dodajVadbo(@PathVariable(name="id") Long id, @RequestBody Vaja vaja) {
+        Vaja shranjenaVaja = vajaDao.save(vaja);
+        vadbaDao.findById(id).get().dodajVajo(shranjenaVaja);
+        return vadbaDao.save(vadbaDao.findById(id).get());
     }
 
     @PutMapping("{id}")

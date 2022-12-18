@@ -9,6 +9,7 @@ import com.ActiveDay.ris.Model.EmailService;
 
 @RestController
 @RequestMapping("/email")
+@CrossOrigin
 public class EmailServiceKontroler
 {
     @Autowired

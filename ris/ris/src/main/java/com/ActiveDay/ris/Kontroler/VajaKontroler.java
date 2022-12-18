@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/vaja")
+@CrossOrigin
 public class VajaKontroler {
     @Autowired
     private VajaRepozitorij vajaDao;

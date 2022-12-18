@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/uporabnik")
+@CrossOrigin
 public class UporabnikKontroler {
     @Autowired
     private UporabnikRepozitorij uporabnikDao;

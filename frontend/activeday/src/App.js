@@ -1,14 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Routing from './components/routing/Routing';
 import Navbar from './components/navbar/Navbar';
-import * as ReactDOM from "react-dom";
+// import * as ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <BrowserRouter>
         <Routing />
       </BrowserRouter>

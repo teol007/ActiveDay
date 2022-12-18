@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/arhiv")
+@CrossOrigin
 public class ArhivKontroler {
     @Autowired
     private ArhivRepozitorij arhivDao;

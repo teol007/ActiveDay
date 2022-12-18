@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ocena")
+@CrossOrigin
 public class OcenaKontroler {
     @Autowired
     private OcenaRepozitorij ocenaDao;
