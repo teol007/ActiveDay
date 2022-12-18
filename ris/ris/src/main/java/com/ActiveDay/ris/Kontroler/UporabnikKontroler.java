@@ -48,7 +48,7 @@ public class UporabnikKontroler {
         if(!uporabnikDao.existsById(id))
             return null;
 
-        if(uporabnik.getRoles().isEmpty())
+        if(uporabnik.getRoles() == null)
         {
             Role userRole = roleRepository.findByName("ROLE_USER");
             uporabnik.setRoles(Arrays.asList(userRole));
