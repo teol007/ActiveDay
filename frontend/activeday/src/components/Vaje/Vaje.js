@@ -18,6 +18,7 @@ const Vaje = () => {
     return (
         <>
             <h1>Vaje</h1>
+            <Link to="/vaje/isci"><Button variant="contained">Poišči vaje</Button></Link>
             <Link to="/vaje/dodaj"><Button variant="contained">Dodaj vajo</Button></Link>
             <VajeTabela vaje={vaje} />
         </>

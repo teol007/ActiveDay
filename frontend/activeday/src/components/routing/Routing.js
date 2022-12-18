@@ -12,6 +12,7 @@ import Vadbe from "../Vadbe/Vadbe";
 import DodajVajoVadbi from "../Vaje/DodajVajoVadbi";
 import DodajVadbo from "../Vadbe/DodajVadbo";
 import PosodobiVadbo from "../Vadbe/PosodobiVadbo";
+import IsciVajo from "../Vaje/IskanjeVaje";
 
 export default function Routing(){
     return(
@@ -23,6 +24,7 @@ export default function Routing(){
             <Route path="/vadbe/:id/dodajVajoVadbi" element={<DodajVajoVadbi />}/>
             <Route path="/vadbe/dodaj" element={<DodajVadbo />}/>
             <Route path="/vadbe/:id/posodobi" element={<PosodobiVadbo />}/>
+            <Route path="/vaje/isci" element={<IsciVajo />}/>
             <Route path="*" element={<PageNotFound />}/>
         </Routes>
     );
